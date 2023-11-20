@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var std = {
+        fName: "shayan",
+        lName: "ranjbar",
+        age: 20,
+        father: "ali",
+      };
+      
+      std.age = 30;
+      delete std.fName;
+      console.log(fName);
+
+      console.log(std.fName);
+      console.log(typeof std);
+      var fName = "AMIR";
+      console.log(fName);
+      var fName = null;
+      console.log(fName);
+
+      var stds = ["amir", "ali"];
+      stds.push("ahmad", "reza"); //for array name stds
+      console.log(stds);
+
+      var name1 = [
+        ["amir", "ali", "reza"],
+        ["mohammd", "sam", ["hesam", "ahmad"]],
+      ];
+      console.log(name1);
+      console.log(name1[1][1]);
+      name1[0][1] = "delete";
+      console.log(name1[1][2][1]);
+
+      var x = 3;
+      var y = --x;
+      console.log(x);
+      console.log(y);
+      var x = 3;
+      var y = x--;
+      console.log(x);
+      console.log(y);
+
+      var x = 2;
+      var y = 3;
+      // x+=y
+      y += x;
+      console.log(x);
+      console.log(y);
+
+      var txt1 = "salam";
+      var txt2 = "alaykom";
+      txt3 = txt1 + " " + txt2;
+      console.log(txt3);
+      var txxt = 'amir"hamidi"';
+      console.log(txxt);
+      var txxt = "amir'hamidi'";
+      console.log(txxt);
+
+      var fName = prompt("please enter your name: ");
+      alert("hello " + fName);
+
+      num1 = Number(prompt("please enter  num1: "));
+      num2 = Number(prompt("please enter  num2: "));
+      console.log(num1 + " + " + num2 + " = " + (num1 + num2));
+
+
+
+      
+
+
+
+      //         let num1 = Number(prompt('please enter num1: '))
+      // let num2 = Number(prompt('please enter num2: '))
+      // console.log(num1 + ' + ' + num2 + ' = ' + (num1 + num2))
+    </script>
+    <script src="Assets/array.js"></script>
+    <script src="Assets/string.js"></script>
+
+  </body>
+</html>
