@@ -8,7 +8,7 @@ console.log(roundedDown);
 
 let bigger = Math.max(5, 9, 2, 12, 7); // = 12
 console.log(bigger);
-
+ 
 
 let smaller = Math.min(5, 9, 2, 12, 7); // = 2
 console.log(smaller);
