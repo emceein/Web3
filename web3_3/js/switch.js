@@ -14,6 +14,7 @@ switch (fruit) {
 }
  
 
+
 let days = 'Shanbe';
 switch (days) {
   case 'Shanbe':
