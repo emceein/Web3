@@ -9,7 +9,7 @@ if (time < 10) {
   txt = "Good evening";
 }
 console.log(txt);
-
+ 
 var numb1 = prompt("Enter a number: ");
 if (numb1 > 0) {
   console.log("The number is positive");
