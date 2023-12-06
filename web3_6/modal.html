@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Login</title>
+    <style>
+        button{
+            display: block;
+            padding: 5px;
+            background-color: lightskyblue;
+            color: darkorchid;
+            font-size: medium;
+            font-weight: 900;
+            border-radius: 20%;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: #8f87fa;
+            color: black;
+            transition: 0.75s;
+
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Modal Login</h2>
+
+    <button id="openModal" onclick="openModal()">Open Modal</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">X</span>
+            <h2>Login</h2>
+            <form>
+             <div style="display: flex;justify-content: space-around;">
+                <div style="">
+                    <label for="username">Username:</label>
+                    <input type="text"  name="username"></div>
+                <div style="">
+                    <label for="password">Password:</label>
+                    <input type="password"  name="password">
+                </div>
+             </div>
+                
+                
+                
+            </form>
+            <div style="display: flex;justify-content: space-around;padding-top: 10px;">
+                <button onclick="closeModal()" style="display: flex;justify-content: center;align-items: center;">Login</button>
+                <button onclick="openModal2()" style="display: flex;justify-content: center;align-items: center;">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal2">
+        <div style="display: flex;justify-content: space-around;" class="modal-content">
+            <form action=""> <label for="">phone :</label> <input type="text"></form>
+        <button onclick="openModal3()" style="display: flex;justify-content: center;align-items: center;">Next</button>
+
+        </div>
+    </div>
+    <div class="modal" id="modal3">
+        <div style="display: flex;justify-content: space-around;" class="modal-content">
+            <p style="font-size: larger;">Welcome</p>
+        <button onclick="closeModal3()" style="display: flex;justify-content: center;align-items: center;">Close</button>
+
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+        function openModal2() {
+            document.getElementById("modal2").style.display = "block";
+            document.getElementById("myModal").style.display = "none";
+
+            
+        }
+        function closeModal2() {
+            document.getElementById("modal2").style.display = "none";
+        }
+        function openModal3() {
+            document.getElementById("modal3").style.display = "block";
+            document.getElementById("myModal2").style.display = "none";
+        }
+        function closeModal3() {
+            document.getElementById("modal3").style.display = "none";
+            document.getElementById("modal2").style.display = "none";
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        
+
+        // window.onclick = function(event) {
+        //     if (event.target == document.getElementById("myModal")) {
+        //         document.getElementById("myModal").style.display = "none";
+        //     }
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        button {
+            border: 2px solid #e26e2b;
+            border-radius: 25%;
+            font-size: larger;
+            font-weight: 700;
+            padding: 20px 32px;
+            text-align: center;
+            transition-duration: 0.4s;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="color1()" onmouseenter="color2()" onmouseleave="color3()" id="myButton">Click me</button>
+    <script>
+        let btn = document.getElementById("myButton")
+        color1 = function() {
+           btn.style.color='red'
+           btn.style.backgroundColor='brown'
+        };
+        color2 = function() {
+           btn.style.color='blue'
+           btn.style.backgroundColor='yellow'
+
+        };
+        color3 = function() {
+           btn.style.color='green'
+           btn.style.backgroundColor='gray'
+
+        };
+
+        
+
+        
+    </script>
+</body>
+</html>
