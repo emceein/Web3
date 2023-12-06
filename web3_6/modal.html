@@ -54,12 +54,27 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .circle{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .circle span{
+            border: 3px solid black;
+            border-radius: 50%;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
-    <h2>Modal Login</h2>
+    <div class="circle">
+        <span id="cir1"></span>
+        <span id="cir2"></span>
+        <span id="cir3"></span>
+    </div>
+    <h2 style="text-align: center;">Modal Login</h2>
 
-    <button id="openModal" onclick="openModal()">Open Modal</button>
+    <button id="openModal" onclick="openModal()" style="margin: 0 auto;">Open Modal</button>
 
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -103,6 +118,8 @@
     <script>
         function openModal() {
             document.getElementById("myModal").style.display = "block";
+            document.getElementById("cir1").style.backgroundColor = "orange";
+
         }
 
         function closeModal() {
@@ -111,6 +128,8 @@
         function openModal2() {
             document.getElementById("modal2").style.display = "block";
             document.getElementById("myModal").style.display = "none";
+            document.getElementById("cir2").style.backgroundColor = "yellow";
+
 
             
         }
@@ -118,10 +137,15 @@
             document.getElementById("modal2").style.display = "none";
         }
         function openModal3() {
+            document.getElementById("cir3").style.backgroundColor = "green";
+
             document.getElementById("modal3").style.display = "block";
             document.getElementById("myModal2").style.display = "none";
         }
         function closeModal3() {
+            document.getElementById("cir1").style.backgroundColor = "white";
+            document.getElementById("cir2").style.backgroundColor = "white";
+            document.getElementById("cir3").style.backgroundColor = "white";
             document.getElementById("modal3").style.display = "none";
             document.getElementById("modal2").style.display = "none";
             document.getElementById("myModal").style.display = "none";
