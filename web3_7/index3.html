@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        body{
+            display: flex;
+        }
+        .relative-pic{
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        button>i.bi{
+            background-color: #ffcc00;
+            color: black;
+            font-weight: 800;
+            font-size: x-large;
+            padding: 12px;
+            border-radius: 50%;
+            transition: 0.5s;
+        }
+        button>i.bi:hover{
+            background-color: darkgoldenrod;
+            cursor: pointer;
+        }
+        button{
+            display: contents;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="relative-pic">
+    <img id="demo" style="display: flex; align-items: center;margin: 0 auto;" src="https://picsum.photos/id/1/600/400" alt="">
+    <button id="prev" onclick="prevpic()"><i class="bi bi-arrow-bar-left" style="left: -15px;top: 50%;position: absolute;"></i></button>
+    <button id="next" onclick="nextpic()"><i class="bi bi-arrow-bar-right" style="right: -15px;top: 50%;position: absolute;"></i></button>
+    </div>
+    
+
+
+    <script>
+        let imgId=1;
+        function changeImg(){
+            document.getElementById('demo').src=`https://picsum.photos/id/${imgId}/600/400`
+            imgId++;
+           
+        }
+        function prevpic() {
+            document.getElementById('demo').src=`https://picsum.photos/id/${imgId}/600/400`
+            imgId--;
+        }
+        function nextpic() {
+            document.getElementById('demo').src=`https://picsum.photos/id/${imgId}/600/400`
+            imgId+=2;
+        }
+        setInterval(changeImg,2500)
+    </script>
+</body>
+</html>
