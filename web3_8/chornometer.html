@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(75,93,192);
+background: radial-gradient(circle, rgba(75,93,192,1) 0%, rgba(112,62,145,1) 100%);
+            padding: 20px;
+        }
+        #time {
+            font-size: 24px;
+            color: #333;
+            display: flex;
+            width: 33%;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            font-size: xxx-large;
+            background: rgb(186,214,213);
+background: linear-gradient(90deg, rgba(186,214,213,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+        }
+        button {
+            margin: 5px;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: rgb(112,34,195);
+background: linear-gradient(0deg, rgba(112,34,195,1) 0%, rgba(253,97,45,1) 100%);
+            border-radius: 40%;
+            width: calc(100%/1.5);
+        }
+        .flexBtn{
+            margin-top: 20px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: space-evenly;
+            
+        }
+        #captures {
+            list-style-type: none;
+            padding: 0;
+        }
+        #captures li {
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="time">
+        <span id="h"></span> : <span id="m"></span> : <span id="s"></span> : <span id="ms"></span>
+    </div>
+    <div class="flexBtn">
+        <button onclick="startCh()">start</button>
+        <button onclick="stopCh()">stop</button>
+        <button onclick="resetCh()">reset</button>
+        <button onclick="captureCh()">capture</button>
+    </div>
+    <ul id="captures">
+
+    </ul>
+
+    <script>
+        function twoDigit(t){
+    let txt = (t<10)?`0${t}`:`${t}`
+    return txt
+}
+
+function toFarsiNumber(n) {
+    const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+    return n
+      .toString()
+      .split('')
+      .map(x => farsiDigits[x])
+      .join('');
+  }
+
+
+
+        let h=0,m=0,s=0,ms=0;
+        let captures=[];
+        function updateCh(){
+            document.getElementById('h').innerText=toFarsiNumber(twoDigit(h));
+            document.getElementById('m').innerText=toFarsiNumber(twoDigit(m));
+            document.getElementById('s').innerText=toFarsiNumber(twoDigit(s));
+            document.getElementById('ms').innerText=toFarsiNumber(twoDigit(ms));
+        }
+        updateCh();
+        let chInterval=null;
+        function startCh(){
+            if(chInterval==null) chInterval=setInterval(countCh,1);
+        }
+        function stopCh(){
+            clearInterval(chInterval);
+            chInterval=null;
+        }
+        function resetCh(){
+            stopCh();
+            h=0;m=0;s=0;ms=0;
+            updateCh();
+        }
+        function captureCh(){
+            let chTime=twoDigit(h) + ':;' + twoDigit(m) + ':' + twoDigit(s) + ':' + twoDigit(ms)
+            captures.push(chTime);
+            updateCapture();
+        }
+
+        function countCh(){
+            ms++;
+            if(ms>1000){
+                ms=0;
+                s++;
+            }
+            if(s>60){
+                m++;
+                s=0;
+            }
+            updateCh();
+        }
+
+        
+        
+        function updateCapture(){
+            document.getElementById('captures').innerHTML='';
+            for(let i=0;i<captures.length;i++) {
+                document.getElementById('captures').innerHTML+=`<li>${toFarsiNumber(captures[i])}</li>`
+            }
+            
+        }
+        updateCapture();
+
+
+
+    </script>
+</body>
+</html>
