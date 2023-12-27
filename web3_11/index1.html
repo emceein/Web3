@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: larger;
+  border-radius: 10%;
+
+}
+button.red{
+    background-color: tomato;
+    font-size: larger;
+    transition: 0.3s;
+    border-radius: 10%;
+}
+button.red:hover{
+    background-color: red;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+#cart {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+#cart li {
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+#cart li:last-child {
+  border-bottom: none;
+}
+
+#cart li:last-child {
+  font-weight: bold;
+}
+.item img{
+    width: 100%;
+}
+.item{
+    width: calc(100%/3.5);
+}
+    </style>
+  </head>
+
+  <body>
+
+
+    
+    <div style="display: flex;justify-content: space-evenly;">
+    <input type="text" id="min" onkeyup="updateBox()" />
+    <input type="text" id="max" onkeyup="updateBox()" />
+    </div>
+    <div id="box"></div>
+    <ul id="cart" data-aos="fade-up" data-aos-anchor-placement="center-bottom"></ul>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init();
+      let cart = [];
+      let products = [
+        { id: 125, title: "product1", color: "red", price: 25000 },
+        { id: 241, title: "product2", color: "blue", price: 75000 },
+        { id: 112, title: "product3", color: "green", price: 10000 },
+        { id: 98, title: "product4", color: "red", price: 120000 },
+      ];
+
+      function fillBox(filterProducts) {
+        let parent = document.getElementById("box");
+        parent.innerHTML = "";
+        for (let i = 0; i < filterProducts.length; i++) {
+          parent.innerHTML += ` <div class="item" >
+        <div><img src="https://picsum.photos/id/1020/600/400" alt=""></div>
+        <div>
+            <span>${filterProducts[i].id}</span>
+        <h2>${filterProducts[i].title}</h2>
+        <span>${filterProducts[i].color}</span>
+        <br>
+        <span>${filterProducts[i].price}</span>
+        <br>
+        <button onclick="addToCart(${filterProducts[i].id})">+</button>
+        <span data-count-id="${filterProducts[i].id}">0</span>
+        <button class="red" onclick="minusFromCart(${filterProducts[i].id})">-</button>
+        </div>
+    </div>`;
+        }
+      }
+
+      fillBox(products);
+
+      function updateBox() {
+        let minP = Number(document.getElementById("min").value);
+        let maxP = Number(document.getElementById("max").value);
+        console.log(minP);
+        console.log(maxP);
+        let pf = products.filter(function (item) {
+          if (minP == 0 && maxP == 0) return true;
+          else if (minP == 0 && maxP != 0) return item.price < maxP;
+          else if (maxP == 0 && minP != 0) return item.price > minP;
+          else return item.price < maxP && item.price > minP;
+        });
+
+        fillBox(pf);
+      }
+
+      function addToCart(id) {
+        let productIndex = products.findIndex(function (item) {
+          return item.id == id;
+        });
+
+        let cartIndex = cart.findIndex(function (item) {
+          return item.product_id == id;
+        });
+        if (cartIndex == -1) {
+          cart.push({
+            count: 1,
+            product_title: products[productIndex].title,
+            product_id: products[productIndex].id,
+            product_price: products[productIndex].price,
+          });
+          document.querySelector(`[data-count-id="${id}"]`).innerHTML = 1;
+        } else {
+          cart[cartIndex].count += 1;
+          document.querySelector(`[data-count-id="${id}"]`).innerHTML =
+            cart[cartIndex].count;
+        }
+
+        updateCart();
+      }
+
+      function minusFromCart(id) {
+        console.log("hi");
+        let cartIndex = cart.findIndex(function (item) {
+          return item.product_id == id;
+        });
+        if (cartIndex == -1) {
+          alert("mahsool mored nazar vojod nadarad");
+        } else { 
+          if (cart[cartIndex].count > 1) {
+            cart[cartIndex].count -= 1;
+            document.querySelector(`[data-count-id="${id}"]`).innerHTML =
+              cart[cartIndex].count;
+          } else if (cart[cartIndex].count == 1) {
+            cart.splice(cartIndex, 1);
+            document.querySelector(`[data-count-id="${id}"]`).innerHTML = 0;
+          }
+        }
+        updateCart();
+      }
+
+      function updateCart() {
+        document.getElementById("cart").innerHTML = "";
+        let totalPrice = 0;
+        cart.forEach((item) => {
+          document.getElementById("cart").innerHTML += `<li>${
+            item.product_title
+          } -- ${item.count} -- ${item.product_price} -->${
+            item.product_price * item.count
+          } </li>`;
+          totalPrice += item.product_price * item.count;
+        });
+        document.getElementById(
+          "cart"
+        ).innerHTML += `<li>total price : ${totalPrice}</li>`;
+      }
+    </script>
+  </body>
+</html>
