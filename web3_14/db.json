@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "fname": "Amir",
+      "age": 30
+    },
+    {
+      "id": "2",
+      "fname": "Ali",
+      "age": 45
+    },
+    {
+      "id": "ae21",
+      "fname": "Mani",
+      "age": 45
+    },
+    {
+      "id": "055f",
+      "fname": "Mohammd",
+      "age": 27
+    },
+    {
+      "id": "3a1a",
+      "fname": "Shayan",
+      "age": 32
+    },
+    {
+      "id": "c5f0",
+      "fname": "amir",
+      "age": 77
+    },
+    {
+      "id": "740f",
+      "fname": "pjoji",
+      "age": 78
+    },
+    {
+      "id": "e8ae",
+      "fname": "",
+      "age": 0
+    },
+    {
+      "id": "3322",
+      "age": null
+    },
+    {
+      "id": "894d",
+      "age": null
+    },
+    {
+      "id": "e162",
+      "age": null
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title"
+    },
+    {
+      "id": "2",
+      "title": "another title"
+    }
+  ]
+}
